@@ -54,7 +54,7 @@ public class MybatisConfiguration extends Configuration {
 
     /**
      * <p>
-     * MybatisPlus 加载 SQL 顺序：
+     * MybatisPlus 加载 SQL顺序：
      * </p>
      * 1、加载XML中的SQL<br>
      * 2、加载sqlProvider中的SQL<br>
