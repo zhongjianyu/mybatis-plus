@@ -25,11 +25,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.baomidou.mybatisplus.entity.Column;
 import com.baomidou.mybatisplus.entity.Columns;
+import com.baomidou.mybatisplus.entity.GlobalConfiguration;
+import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.toolkit.ArrayUtils;
 import com.baomidou.mybatisplus.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.toolkit.GlobalConfigUtils;
 import com.baomidou.mybatisplus.toolkit.MapUtils;
+import com.baomidou.mybatisplus.toolkit.SqlReservedWords;
 import com.baomidou.mybatisplus.toolkit.SqlUtils;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
 
@@ -109,6 +113,24 @@ public abstract class Wrapper<T> implements Serializable {
     }
 
     public Wrapper<T> setSqlSelect(String sqlSelect) {
+    	GlobalConfiguration globalConfig = GlobalConfigUtils.getGlobalConfig(SqlRunner.FACTORY.getConfiguration());
+    	// ORACLE关键字特殊处理(ORACLE关键字转"A")
+    	if (globalConfig.getDbType() == DBType.ORACLE) {
+    		String oracleSqlSelect = "";
+    		String [] sqlSelectArr = sqlSelect.split(",");
+    		for (int i = 0; i < sqlSelectArr.length; i++) {
+				String s = sqlSelectArr[i].trim();
+				if(SqlReservedWords.containsOracleWord(s)){
+					s = "\"" + s.toUpperCase() + "\"";
+				}
+				oracleSqlSelect += s + ",";
+			}
+    		if(!"".equals(oracleSqlSelect)){
+    			oracleSqlSelect = oracleSqlSelect.substring(0,oracleSqlSelect.length() - 1);
+    		}
+    		sqlSelect = oracleSqlSelect;
+        }
+    	
         if (StringUtils.isNotEmpty(sqlSelect)) {
             this.sqlSelect = sqlSelect;
         }
