@@ -4,7 +4,7 @@
 
 	<groupId>aljoin-mybatis-plus-parent</groupId>
 	<artifactId>aljoin-mybatis-plus-parent</artifactId>
-	<version>2.1.6-SNAPSHOT</version>
+	<version>2.1.6.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>aljoin-mybatis-plus-parent</name>

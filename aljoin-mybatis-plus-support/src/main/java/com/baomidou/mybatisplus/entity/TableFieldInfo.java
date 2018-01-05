@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.baomidou.mybatisplus.toolkit.SqlReservedWords;
@@ -186,6 +187,9 @@ public class TableFieldInfo {
         if (globalConfig.isCapitalMode() && !isRelated()) {
             // 全局大写，非注解指定
             temp = temp.toUpperCase();
+        }
+        if (globalConfig.getDbType() == DBType.ORACLE && SqlReservedWords.containsOracleWord(temp)) {
+        	temp = "\"" + temp.toUpperCase() + "\"";
         }
         this.column = temp;
     }

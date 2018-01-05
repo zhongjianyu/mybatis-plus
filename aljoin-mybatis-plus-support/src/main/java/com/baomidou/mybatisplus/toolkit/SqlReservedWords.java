@@ -33,6 +33,8 @@ import com.baomidou.mybatisplus.enums.DBType;
 public class SqlReservedWords {
 
     public static final Set<String> RESERVED_WORDS;
+    // 自定义oracle关键字
+    public static final Set<String> ORACLE_RESERVED_WORDS;
 
     static {
         String[] words = {"AUDIT", "VOLUMES", "MINVALUE", "STATIC", "FLOOR", "CATALOG", "YEAR", "TRIGGER_CATALOG", "WLM",
@@ -143,6 +145,11 @@ public class SqlReservedWords {
 
         RESERVED_WORDS = new HashSet<>(words.length);
         Collections.addAll(RESERVED_WORDS, words);
+        
+        // 自定义oracle关键字
+        String[] oracleWords = {"COMMENT","VERSION"};
+        ORACLE_RESERVED_WORDS = new HashSet<>(oracleWords.length);
+        Collections.addAll(ORACLE_RESERVED_WORDS, oracleWords);
     }
 
     /**
@@ -185,6 +192,16 @@ public class SqlReservedWords {
      */
     public static boolean containsWord(String word) {
         return null != word && RESERVED_WORDS.contains(word.toUpperCase());
+    }
+    
+    /**
+     * 判断关键字中是否包含该字段
+     *
+     * @param word
+     * @return
+     */
+    public static boolean containsOracleWord(String word) {
+        return null != word && ORACLE_RESERVED_WORDS.contains(word.toUpperCase());
     }
 
 }

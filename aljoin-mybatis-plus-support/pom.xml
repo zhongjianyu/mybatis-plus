@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.baomidou</groupId>
 	<artifactId>aljoin-mybatis-plus-support</artifactId>
-	<version>2.1.6-SNAPSHOT</version>
+	<version>2.1.6.1-SNAPSHOT</version>
 	<name>aljoin-mybatis-plus-support</name>
 	<!-- 发布到远程的目录 -->
 	<distributionManagement>

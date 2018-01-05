@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.baomidou</groupId>
 	<artifactId>aljoin-mybatis-plus-generate</artifactId>
-	<version>2.1.6-SNAPSHOT</version>
+	<version>2.1.6.1-SNAPSHOT</version>
 	<name>aljoin-mybatis-plus-generate</name>
 	<!-- 发布到远程的目录 -->
 	<distributionManagement>
@@ -51,7 +51,7 @@ scm:git@github.com:Codearte/gradle-nexus-staging-plugin.git
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>aljoin-mybatis-plus-support</artifactId>
-			<version>2.1.6-SNAPSHOT</version>
+			<version>2.1.6.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
