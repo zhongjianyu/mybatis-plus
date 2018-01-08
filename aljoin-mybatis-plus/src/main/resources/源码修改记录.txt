@@ -1,0 +1,9 @@
+-------------------以下的修改时增加对oracle的兼容支持-------------------
+
+1.SqlReservedWords.java增加自定义oracle关键字变量以及判断是否存在方法containsOracleWord
+
+2.TableFieldInfo.java的setColumn方法，构造查询列的时候如果是oracle关键字，需要加上双引号+大写
+
+3.Wrapper.java类的setSqlSelect方法，构造查询列的时候如果是oracle关键字，需要加上双引号+大写
+
+4.AutoSqlInjector.java的sqlSelectColumns方法，构造查询列的时候如果AS别名是oracle关键字，需要加上双引号+大写

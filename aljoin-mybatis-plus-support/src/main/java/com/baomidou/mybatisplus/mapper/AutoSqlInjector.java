@@ -18,6 +18,7 @@ package com.baomidou.mybatisplus.mapper;
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.entity.TableFieldInfo;
 import com.baomidou.mybatisplus.entity.TableInfo;
+import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -626,6 +627,10 @@ public class AutoSqlInjector implements ISqlInjector {
                     } else {
                         // 字段属性不一致
                         columns.append(fieldInfo.getColumn());
+                        //如果wordConvert是oracle需要转换成双引号+大写(as别名)
+                        if (this.getGlobalConfig().getDbType() == DBType.ORACLE && SqlReservedWords.containsOracleWord(wordConvert)) {
+                        	wordConvert = "\"" + wordConvert.toUpperCase() + "\"";
+                        }
                         columns.append(" AS ").append(wordConvert);
                     }
                     if (i + 1 < size) {
